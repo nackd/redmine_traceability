@@ -1,0 +1,28 @@
+<h2> Matriz de Trazabilidad </h2>
+<table class='list'>
+  <thead>
+    <th width=50%><%= @tracker_0.name %></th>
+    <th><%= @tracker_1.name %></th>
+  </thead>
+  
+  <tbody>
+    <% @issue_pairs.each do |ip| %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td align="left">
+          <p><%= link_to_issue ip[0] %>: <%=  h(truncate(ip[0].subject, 50)) %></p>
+          <br/>
+          <p><%= textilizable ip[0].description %></p>
+          <br/><br/>
+        </td>
+        <% unless ip[1].nil? %>
+          <td align="left">
+            <% ip[1].each do |issue| %>
+              <p><%= link_to_issue issue %>: <%= h(truncate(issue.subject, 50)) %></p>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
