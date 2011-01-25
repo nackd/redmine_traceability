@@ -1,13 +1,15 @@
 # Spanish strings go here
 es:
+  project_module_traceability: Matriz de Trazabilidad
+  'Traceability Matrix': Matriz de Trazabilidad
+  permission_view_mt: Ver la matriz de trazabilidad
+
   timesheet_title: Parte de horas
   timesheet_date_from_label: De
   timesheet_date_to_label: A
   timesheet_project_label: Proyecto
   timesheet_activities_label: Actividad
   timesheet_users_label: Usuarios
-  project_module_traceability: Matriz de Trazabilidad
-  'Traceability Matrix': Matriz de Trazabilidad
 
   traceability:
     name: Trazabilidad
