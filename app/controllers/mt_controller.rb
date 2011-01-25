@@ -2,6 +2,7 @@ class MtController < ApplicationController
   unloadable
 
   before_filter :find_project, :authorize, :get_trackers
+  menu_item :traceability
 
   def index
     issues = @tracker0.issues.find(:all,
