@@ -7,6 +7,7 @@ es:
   timesheet_activities_label: Actividad
   timesheet_users_label: Usuarios
   project_module_traceability: Matriz de Trazabilidad
+  'Traceability Matrix': Matriz de Trazabilidad
 
   traceability:
     name: Trazabilidad

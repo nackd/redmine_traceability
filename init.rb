@@ -1,7 +1,7 @@
 require 'redmine'
 
 Redmine::Plugin.register :redmine_traceability do
-  name :project_module_traceability
+  name :'Traceability Matrix'
   author 'Emergya Consultoría'
   description :'traceability.plugin_description'
   version '0.1.1'

@@ -7,6 +7,7 @@ en:
   timesheet_activities_label: Activity
   timesheet_users_label: Users
   project_module_traceability: Traceability Matrix
+  'Traceability Matrix': Traceability Matrix
 
   traceability:
     name: Traceability
