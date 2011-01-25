@@ -3,11 +3,11 @@ Dir["#{File.dirname(__FILE__)}/config/initializers/**/*.rb"].sort.each do |initi
 end
 require 'redmine'
 
-RAILS_DEFAULT_LOGGER.info 'Starting MT plugin for Redmine'
+RAILS_DEFAULT_LOGGER.info 'Starting Traceability plugin for Redmine'
 
 Redmine::Plugin.register :redmine_traceability do
   name :'traceability.project_module_traceability'
-  author 'Gumer Coronel, Clara Meniz'
+  author 'Emergya Consultoría'
   description :'traceability.plugin_description'
   version '0.1.1'
   
