@@ -6,7 +6,8 @@ es:
   timesheet_project_label: Proyecto
   timesheet_activities_label: Actividad
   timesheet_users_label: Usuarios
+  project_module_traceability: Matriz de Trazabilidad
+
   traceability:
-    project_module_traceability: Matriz de Trazabilidad
     plugin_description: Plugin para mostrar la matriz de trazabilidad entre dos trackers
     name: Trazabilidad
