@@ -1,0 +1,12 @@
+# English strings go here
+en:
+  timesheet_title: Timesheet
+  timesheet_date_from_label: From
+  timesheet_date_to_label: To
+  timesheet_project_label: Project
+  timesheet_activities_label: Activity
+  timesheet_users_label: Users
+  traceability:
+    project_module_traceability: Traceability Matrix
+    plugin_description: Plugin to show the traceability matrix between two trackers
+    name: Traceability

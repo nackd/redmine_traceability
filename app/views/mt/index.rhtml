@@ -1,4 +1,41 @@
-<h2> Matriz de Trazabilidad </h2>
+<h2> <%= l('traceability.project_module_traceability') %> </h2>
+<table class='list'>
+  <thead>
+    <tr>
+      <td></td>
+      <th colspan="<%=@cp.size%>"><%= @tracker_2.name %></th>
+    </tr>
+    <tr>
+      <th width=50%><%= @tracker_0.name %></th>
+      <% @cp.each do |cp| %>
+        <th title="<%= cp %>">
+          <%= link_to "##{cp.id}", {:controller => "issues", :action => "show", :id => cp.id} %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cp_pairs.each do |i| %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td title="<%= i[0] %>">
+          <p><%= link_to "##{i[0].id}", {:controller => "issues", :action => "show", :id => i[0].id} %></p>
+        </td>
+        <% unless i[1].nil? %>
+          <% @cp.each do |cp| %>
+            <td>
+            <% i[1].each do |issue| %>
+              <% if issue.id == cp.id %>
+                <p>X</p>
+              <% end %>
+            <% end %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <table class='list'>
   <thead>
     <th width=50%><%= @tracker_0.name %></th>

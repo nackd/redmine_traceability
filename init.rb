@@ -1,16 +1,17 @@
-# Redmine sample plugin
+Dir["#{File.dirname(__FILE__)}/config/initializers/**/*.rb"].sort.each do |initializer|
+  Kernel.load(initializer)
+end
 require 'redmine'
 
 RAILS_DEFAULT_LOGGER.info 'Starting MT plugin for Redmine'
 
-Redmine::Plugin.register :redmine_trazabilidad do
-  name 'Matriz de Trazabilidad'
-  author 'Gumer Coronel'
-  description 'Plugin para mostrar la matriz de trababilidad entre dos trackers'
+Redmine::Plugin.register :redmine_traceability do
+  name :'traceability.project_module_traceability'
+  author 'Gumer Coronel, Clara Meniz'
+  description :'traceability.plugin_description'
   version '0.1.1'
   
-  settings :default => {'trackers' => 'CMMI_Requisitos, CMMI_Casos de prueba'}, 
-    :partial => 'settings/settings'
+  settings :default => {}
 
   # This plugin adds a project module
   # It can be enabled/disabled at project level (Project settings -> Modules)
@@ -26,6 +27,6 @@ Redmine::Plugin.register :redmine_trazabilidad do
       }
 
   # A new item is added to the project menu (because Redmine can't add it anywhere else)
-  menu :project_menu, "Trazabilidad", 
-    {:controller => 'mt', :action => 'index'}, {}
+  menu :project_menu, :traceability,
+    {:controller => 'mt', :action => 'index'}, :caption => :'traceability.name'
 end
