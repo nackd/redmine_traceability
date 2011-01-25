@@ -31,7 +31,7 @@
     <% @issue_pairs.each do |ip| %>
       <tr class="<%= cycle("odd", "even") %>">
         <td title="<%= ip[0] %>">
-          <p><%= link_to "##{ip[0].id}", {:controller => "issues", :action => "show", :id => ip[0]} %></p>
+          <%= link_to "##{ip[0].id}", {:controller => "issues", :action => "show", :id => ip[0]} %>
         </td>
         <% @tracker1_issues.each do |cp| %>
           <td class="x">
@@ -56,18 +56,22 @@
   <tbody>
     <% @issue_pairs.each do |ip| %>
       <tr class="<%= cycle("odd", "even") %>">
-        <td align="left">
-          <p><%= link_to_issue ip[0] %></p>
-          <p><%= textilizable ip[0].description %></p>
+        <td>
+          <%= link_to_issue ip[0] %>
+          <%= textilizable ip[0].description %>
         </td>
         <% unless ip[1].nil? %>
-          <td align="left">
+          <td>
             <% ip[1].each do |issue| %>
               <p><%= link_to_issue issue %></p>
             <% end %>
           <% end %>
         </td>
       </tr>
+    <% end %>
+    <% @tracker1_not_seen_issues.each do |issue| %>
+      <td></td>
+      <td><%= link_to_issue issue %></td>
     <% end %>
   </tbody>
 </table>

@@ -8,7 +8,7 @@ class MtController < ApplicationController
       :conditions => ['project_id=?', @project.id],
       :order => 'id')
 
-    @issue_pairs = @tracker1_issues = []
+    @issue_pairs = tracker1_seen_issues = []
     issues.each do |issue|
       rel_issues_collection = []
       issue.relations_to.each do |issue_relation|
@@ -28,13 +28,16 @@ class MtController < ApplicationController
       if rel_issues_collection.empty?
         @issue_pairs << [issue, nil]
       else
-        @tracker1_issues |= rel_issues_collection
+        tracker1_seen_issues |= rel_issues_collection
         rel_issues_collection.sort! { |x, y| x.id <=> y.id }
         @issue_pairs << [issue, rel_issues_collection]
       end
     end
 
-    @tracker1_issues.sort! { |x, y| x.id <=> y.id }
+    @tracker1_issues = @tracker1.issues.find(:all,
+      :conditions => ['project_id = ?', @project.id],
+      :order => 'id')
+    @tracker1_not_seen_issues = @tracker1_issues - tracker1_seen_issues
   end
 
   private
