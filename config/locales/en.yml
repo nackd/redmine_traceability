@@ -9,5 +9,8 @@ en:
   project_module_traceability: Traceability Matrix
 
   traceability:
-    plugin_description: Plugin to show the traceability matrix between two trackers
     name: Traceability
+    plugin_description: Plugin to show the traceability matrix between two trackers
+    setup: An error occurred. Please, check the plugin configuration
+    first_tracker: First tracker
+    second_tracker: Second tracker

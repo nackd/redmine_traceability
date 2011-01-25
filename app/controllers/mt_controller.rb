@@ -46,10 +46,10 @@ class MtController < ApplicationController
   end
 
   def get_trackers
-    # In order to obtein trackers values
-    @trackers_names = Setting.plugin_redmine_traceability['trackers'].split(',')
-
-    @tracker0 = Tracker.find_by_name(@trackers_names[0].strip)
-    @tracker1 = Tracker.find_by_name(@trackers_names[1].strip)
+    @tracker0 = Tracker.find(Setting.plugin_redmine_traceability['tracker0'])
+    @tracker1 = Tracker.find(Setting.plugin_redmine_traceability['tracker1'])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = l(:'traceability.setup')
+    render
   end
 end

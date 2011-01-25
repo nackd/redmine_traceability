@@ -1,4 +1,10 @@
 <p>
-  <label>Trackers</label>
-  <%= text_field_tag 'settings[trackers]', @settings['trackers'], :size => 50 %>
+  <label><%=l :'traceability.first_tracker' %></label>
+  <%= select_tag 'settings[tracker0]',
+                 options_from_collection_for_select(Tracker.all, :id, :name, @settings['tracker0'].to_i) %>
+</p>
+<p>
+  <label><%=l :'traceability.second_tracker' %></label>
+  <%= select_tag 'settings[tracker1]',
+                 options_from_collection_for_select(Tracker.all, :id, :name, @settings['tracker1'].to_i) %>
 </p>

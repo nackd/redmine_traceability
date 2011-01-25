@@ -6,7 +6,7 @@ Redmine::Plugin.register :redmine_traceability do
   description :'traceability.plugin_description'
   version '0.1.1'
 
-  settings :default => {'trackers' => 'Requisitos, Casos de prueba'},
+  settings :default => {'tracker0' => nil, 'tracker1' => nil},
            :partial => 'settings/settings'
 
   # This plugin adds a project module
