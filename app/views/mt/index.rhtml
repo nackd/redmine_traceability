@@ -1,60 +1,69 @@
-<h2> <%= l('traceability.project_module_traceability') %> </h2>
+<% content_for :header_tags do %>
+  <style type="text/css">
+    td.x {
+      border-left: 1px solid #E7E7E7;
+      text-align: center;
+    }
+    table.list {
+      margin-bottom: 2em;
+    }
+  </style>
+<%end %>
+
+<h2> <%= l(:project_module_traceability) %> </h2>
 <table class='list'>
   <thead>
     <tr>
       <td></td>
-      <th colspan="<%=@cp.size%>"><%= @tracker_2.name %></th>
+      <th colspan="<%= @tracker1_issues.count %>"><%= @tracker1.name %></th>
     </tr>
     <tr>
-      <th width=50%><%= @tracker_0.name %></th>
-      <% @cp.each do |cp| %>
-        <th title="<%= cp %>">
-          <%= link_to "##{cp.id}", {:controller => "issues", :action => "show", :id => cp.id} %>
+      <th><%= @tracker0.name %></th>
+      <% @tracker1_issues.each do |issue| %>
+        <th title="<%= issue %>">
+          <%= link_to "##{issue.id}", {:controller => "issues", :action => "show", :id => issue} %>
         </th>
       <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <% @cp_pairs.each do |i| %>
+    <% @issue_pairs.each do |ip| %>
       <tr class="<%= cycle("odd", "even") %>">
-        <td title="<%= i[0] %>">
-          <p><%= link_to "##{i[0].id}", {:controller => "issues", :action => "show", :id => i[0].id} %></p>
+        <td title="<%= ip[0] %>">
+          <p><%= link_to "##{ip[0].id}", {:controller => "issues", :action => "show", :id => ip[0]} %></p>
         </td>
-        <% unless i[1].nil? %>
-          <% @cp.each do |cp| %>
-            <td>
-            <% i[1].each do |issue| %>
-              <% if issue.id == cp.id %>
-                <p>X</p>
-              <% end %>
+        <% @tracker1_issues.each do |cp| %>
+          <td class="x">
+          <% ip[1] && ip[1].each do |issue| %>
+            <% if issue.id == cp.id %>
+              X
             <% end %>
-            </td>
           <% end %>
+          </td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <table class='list'>
   <thead>
-    <th width=50%><%= @tracker_0.name %></th>
-    <th><%= @tracker_1.name %></th>
+    <th width="50%"><%= @tracker0.name %></th>
+    <th width="50%"><%= @tracker1.name %></th>
   </thead>
-  
+
   <tbody>
     <% @issue_pairs.each do |ip| %>
       <tr class="<%= cycle("odd", "even") %>">
         <td align="left">
-          <p><%= link_to_issue ip[0] %>: <%=  h(truncate(ip[0].subject, 50)) %></p>
-          <br/>
+          <p><%= link_to_issue ip[0] %></p>
           <p><%= textilizable ip[0].description %></p>
-          <br/><br/>
         </td>
         <% unless ip[1].nil? %>
           <td align="left">
             <% ip[1].each do |issue| %>
-              <p><%= link_to_issue issue %>: <%= h(truncate(issue.subject, 50)) %></p>
+              <p><%= link_to_issue issue %></p>
             <% end %>
           <% end %>
         </td>
@@ -62,4 +71,3 @@
     <% end %>
   </tbody>
 </table>
-
