@@ -1,9 +1,4 @@
-Dir["#{File.dirname(__FILE__)}/config/initializers/**/*.rb"].sort.each do |initializer|
-  Kernel.load(initializer)
-end
 require 'redmine'
-
-RAILS_DEFAULT_LOGGER.info 'Starting Traceability plugin for Redmine'
 
 Redmine::Plugin.register :redmine_traceability do
   name :project_module_traceability
