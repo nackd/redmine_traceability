@@ -1,29 +1,35 @@
 == Traceability Plugin
 
-Traceability is a Redmine plugin to show the traceability matrix between two trackers
-view of the projects.
+Traceability is a Redmine plugin to show the traceability matrix between the
+issues of two trackers of a project.
 
 == Features
 
-* Shows the relationship between requirements and test cases.
+* Shows a summary view of the relations between the two configured trackers
+(i.e. requirements vs. test cases).
 
 == Getting the plugin
 
 A copy of the plugin can be found in the {downloads}[http://forja.cenatic.es/]
- at Cenatic Forge and also on {Gitorious}[http://gitorious.org/redmine_traceability/redmine_traceability/master].
+at Cenatic Forge and also on
+{Gitorious}[http://gitorious.org/redmine_traceability/redmine_traceability/master].
 
 == Install
 
-1. Make sure you have installed the Redmine version 1.0.0 or higher.
-2. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins
-3. Install the plugin running the commands below from your Redmine directory (if you are going to
-   run Redmine in, e.g. the production environment, you need to append RAILS_ENV=production to each
-   line):
- rake traceability:create_data
-4. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
-5. You should have now a new module (traceability) to activate on each project.
+1. Follow the Redmine plugin installation steps at:
+   http://www.redmine.org/wiki/redmine/Plugins
+2. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
 
 == Usage
+
+After installation you have to configure wich trackers the plugin will operate
+on (Administration -> Plugins -> Traceability Matrix -> Configure).
+
+The plugin adds a new module (Traceability Matrix) which you can enable in the
+desired projects.
+
+There is also a new permission which you should grant to the user roles allowed
+to see the matrix.
 
 == License
 
@@ -31,4 +37,5 @@ This plugin is licensed under the GNU GPL v2.  See LICENSE.txt for details.
 
 == Project help
 
-If you need help you can contact the maintainer on the bug tracker at http://forja.cenatic.es/
+If you need help you can contact the maintainer on the bug tracker at
+http://forja.cenatic.es/
