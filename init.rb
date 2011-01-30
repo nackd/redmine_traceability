@@ -1,5 +1,3 @@
-require 'redmine'
-
 Redmine::Plugin.register :redmine_traceability do
   name :'Traceability Matrix'
   author 'Emergya Consultoría'
@@ -19,5 +17,7 @@ Redmine::Plugin.register :redmine_traceability do
 
   # A new item is added to the project menu (because Redmine can't add it anywhere else)
   menu :project_menu, :traceability,
-    {:controller => 'mt', :action => 'index'}, :caption => :'traceability.name'
+    {:controller => 'mt', :action => 'index'},
+    :caption => :'traceability.name',
+    :param => :project_id
 end
