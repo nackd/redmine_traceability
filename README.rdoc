@@ -23,13 +23,13 @@ at Cenatic Forge and also on
 == Usage
 
 After installation you have to configure wich trackers the plugin will operate
-on (Administration -> Plugins -> Traceability Matrix -> Configure).
+on (Administration -> Plugins -> Traceability Matrix -> Configure). The plugin
+adds a new module (Traceability Matrix) which you can enable in the desired
+projects. There is also a new permission (View traceability matrix) which you
+should grant to the user roles allowed to see the matrix.
 
-The plugin adds a new module (Traceability Matrix) which you can enable in the
-desired projects.
-
-There is also a new permission (View traceability matrix) which you should
-grant to the user roles allowed to see the matrix.
+The matrix shows wich issues of one tracker are related to issues of the other
+one.
 
 == License
 
