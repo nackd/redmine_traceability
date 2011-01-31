@@ -6,7 +6,7 @@ issues of two trackers of a project.
 == Features
 
 * Shows a summary view of the relations between the two configured trackers
-(i.e. requirements vs. test cases).
+(e.g. requirements vs. test cases).
 
 == Getting the plugin
 
@@ -28,8 +28,8 @@ on (Administration -> Plugins -> Traceability Matrix -> Configure).
 The plugin adds a new module (Traceability Matrix) which you can enable in the
 desired projects.
 
-There is also a new permission which you should grant to the user roles allowed
-to see the matrix.
+There is also a new permission (View traceability matrix) which you should
+grant to the user roles allowed to see the matrix.
 
 == License
 
