@@ -1,19 +1,12 @@
 # English strings go here
 en:
   project_module_traceability: Traceability Matrix
-  'Traceability Matrix': Traceability Matrix
   permission_view_mt: View traceability matrix
 
-  timesheet_title: Timesheet
-  timesheet_date_from_label: From
-  timesheet_date_to_label: To
-  timesheet_project_label: Project
-  timesheet_activities_label: Activity
-  timesheet_users_label: Users
-
   traceability:
-    name: Traceability
+    plugin_name: Traceability Matrix
     plugin_description: Plugin to show the traceability matrix between two trackers
+    menu_item_name: Traceability
     setup: An error occurred. Please, check the plugin configuration
     first_tracker: First tracker
     second_tracker: Second tracker
