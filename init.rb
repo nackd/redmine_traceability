@@ -9,7 +9,7 @@ Rails.configuration.after_initialize do
       version '1.0'
 
       settings :default => {'tracker0' => nil, 'tracker1' => nil},
-      :partial => 'settings/settings'
+      :partial => 'settings/traceability'
 
       # This plugin adds a project module
       # It can be enabled/disabled at project level (Project settings -> Modules)
