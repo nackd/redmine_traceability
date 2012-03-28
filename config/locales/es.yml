@@ -8,5 +8,6 @@ es:
     plugin_description: Plugin para mostrar la matriz de trazabilidad entre dos trackers
     menu_item_name: Trazabilidad
     setup: Se produjo un error. Por favor, revise la configuración del plugin
-    first_tracker: Primer tipo
-    second_tracker: Segundo tipo
+    first_tracker: Primer tipo (filas)
+    second_tracker: Segundo tipo (columnas)
+    intermediate_tracker: Tipo intermedio

@@ -17,11 +17,11 @@
     <thead>
       <tr>
         <td></td>
-        <th colspan="<%= @tracker1_issues.length %>"><%= @tracker1.name %></th>
+        <th colspan="<%= @tracker_cols_issues.length %>"><%= @tracker_cols.name %></th>
       </tr>
       <tr>
-        <th><%= @tracker0.name %></th>
-        <% @tracker1_issues.each do |issue| %>
+        <th><%= @tracker_rows.name %></th>
+        <% @tracker_cols_issues.each do |issue| %>
           <th title="<%= issue %>">
             <%= link_to "##{issue.id}", {:controller => "issues", :action => "show", :id => issue} %>
           </th>
@@ -35,7 +35,7 @@
           <td title="<%= ip[0] %>">
             <%= link_to "##{ip[0].id}", {:controller => "issues", :action => "show", :id => ip[0]} %>
           </td>
-          <% @tracker1_issues.each do |cp| %>
+          <% @tracker_cols_issues.each do |cp| %>
             <td class="x">
             <% ip[1] && ip[1].each do |issue| %>
               <% if issue.id == cp.id %>
@@ -51,8 +51,8 @@
 
   <table class='list'>
     <thead>
-      <th width="50%"><%= @tracker0.name %></th>
-      <th width="50%"><%= @tracker1.name %></th>
+      <th width="50%"><%= @tracker_rows.name %></th>
+      <th width="50%"><%= @tracker_cols.name %></th>
     </thead>
 
     <tbody>
@@ -71,7 +71,7 @@
           </td>
         </tr>
       <% end %>
-      <% @tracker1_not_seen_issues.each do |issue| %>
+      <% @tracker_cols_not_seen_issues.each do |issue| %>
         <td></td>
         <td><%= link_to_issue issue %></td>
       <% end %>
