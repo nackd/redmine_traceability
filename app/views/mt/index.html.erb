@@ -71,10 +71,12 @@
           </td>
         </tr>
       <% end %>
-      <% @tracker_cols_not_seen_issues.each do |issue| %>
-        <td></td>
-        <td><%= link_to_issue issue %></td>
-      <% end %>
+      <td></td>
+      <td>
+        <% @tracker_cols_not_seen_issues.each do |issue| %>
+          <p><%= link_to_issue issue %></p>
+        <% end %>
+      </td>
     </tbody>
   </table>
 <% end %>
