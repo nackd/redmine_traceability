@@ -5,16 +5,17 @@ class MtController < ApplicationController
   menu_item :traceability
 
   def index
-    @tracker_rows_issues = @tracker_rows.issues.find(:all,
-      :conditions => ['project_id=?', @project.id],
-      :order => 'id', :include => [:relations_from => :issue_to, :relations_to => :issue_from])
-    @tracker_cols_issues = @tracker_cols.issues.find(:all,
-      :conditions => ['project_id = ?', @project.id],
-      :order => 'id')
+    @issue_rows = @tracker_rows.issues.find(:all,
+                                            :include => [:relations_from => :issue_to, :relations_to => :issue_from],
+                                            :order => 'id',
+                                            :conditions => ['project_id=?', @project.id])
+    @issue_cols = @tracker_cols.issues.find(:all,
+                                            :conditions => ['project_id = ?', @project.id],
+                                            :order => 'id')
 
-    @tracker_cols_not_seen_issues = @tracker_cols_issues.clone
+    @not_seen_issue_cols = @issue_cols.clone
     @issue_pairs = {}
-    @tracker_rows_issues.each do |row_issue|
+    @issue_rows.each do |row_issue|
       rel_issues_collection = []
       row_issue.relations_to.each do |issue_relation|
         rel_issue = issue_relation.issue_from
@@ -31,7 +32,7 @@ class MtController < ApplicationController
       end
 
       unless rel_issues_collection.empty?
-        rel_issues_collection.each { |i| @tracker_cols_not_seen_issues.delete i }
+        rel_issues_collection.each { |i| @not_seen_issue_cols.delete i }
         @issue_pairs[row_issue] ||= {}
         rel_issues_collection.each { |i| @issue_pairs[row_issue][i] = true }
       end

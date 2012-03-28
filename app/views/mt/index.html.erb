@@ -17,27 +17,27 @@
     <thead>
       <tr>
         <td></td>
-        <th colspan="<%= @tracker_cols_issues.length %>"><%= @tracker_cols.name %></th>
+        <th colspan="<%= @issue_cols.length %>"><%= @tracker_cols.name %></th>
       </tr>
       <tr>
         <th><%= @tracker_rows.name %></th>
-        <% @tracker_cols_issues.each do |issue| %>
-          <th title="<%= issue %>">
-            <%= link_to "##{issue.id}", {:controller => "issues", :action => "show", :id => issue} %>
+        <% @issue_cols.each do |issue_col| %>
+          <th title="<%= issue_col %>">
+            <%= link_to "##{issue_col.id}", {:controller => "issues", :action => "show", :id => issue_col} %>
           </th>
         <% end %>
       </tr>
     </thead>
 
     <tbody>
-      <% @tracker_rows_issues.each do |issue| %>
+      <% @issue_rows.each do |issue_row| %>
         <tr class="<%= cycle("odd", "even") %>">
-          <td title="<%= issue %>">
-            <%= link_to "##{issue.id}", {:controller => "issues", :action => "show", :id => issue} %>
+          <td title="<%= issue_row %>">
+            <%= link_to "##{issue_row.id}", {:controller => "issues", :action => "show", :id => issue_row} %>
           </td>
-          <% @tracker_cols_issues.each do |cp| %>
+          <% @issue_cols.each do |issue_col| %>
             <td class="x">
-              <% if @issue_pairs.has_key? issue and @issue_pairs[issue].has_key? cp %>
+              <% if @issue_pairs.has_key? issue_row and @issue_pairs[issue_row].has_key? issue_col %>
                 X
               <% end %>
             </td>
@@ -54,27 +54,27 @@
     </thead>
 
     <tbody>
-      <% @tracker_rows_issues.each do |issue| %>
+      <% @issue_rows.each do |issue_row| %>
         <tr class="<%= cycle("odd", "even") %>">
           <td>
-            <%= link_to_issue issue %>
-            <%= textilizable issue.description %>
+            <%= link_to_issue issue_row %>
+            <%= textilizable issue_row.description %>
           </td>
           <td>
-            <% unless @issue_pairs[issue].nil? %>
-              <% @issue_pairs[issue].keys.sort.each do |other_issue| %>
-                <p><%= link_to_issue other_issue %></p>
+            <% unless @issue_pairs[issue_row].nil? %>
+              <% @issue_pairs[issue_row].keys.sort.each do |issue_col| %>
+                <p><%= link_to_issue issue_col %></p>
               <% end %>
             <% end %>
           </td>
         </tr>
       <% end %>
-      <% unless @tracker_cols_not_seen_issues.empty? %>
-          <td></td>
+      <% unless @not_seen_issue_cols.empty? %>
         <tr class="<%= cycle("odd", "even") %>">
+          <td></td>
           <td>
-            <% @not_seen_issue_cols.each do |issue| %>
-              <p><%= link_to_issue issue %></p>
+            <% @not_seen_issue_cols.each do |issue_col| %>
+              <p><%= link_to_issue issue_col %></p>
             <% end %>
           </td>
         </tr>
