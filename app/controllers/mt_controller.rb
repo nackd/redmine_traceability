@@ -1,7 +1,7 @@
 class MtController < ApplicationController
   unloadable
 
-  before_filter :find_project, :authorize, :get_trackers
+  before_filter :find_project_by_project_id, :authorize, :get_trackers
   menu_item :traceability
 
   def index
@@ -42,9 +42,6 @@ class MtController < ApplicationController
   end
 
   private
-  def find_project
-    @project = Project.find(params[:project_id])
-  end
 
   def get_trackers
     @tracker_rows = Tracker.find(Setting.plugin_redmine_traceability['tracker0'])
