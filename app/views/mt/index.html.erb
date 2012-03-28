@@ -30,18 +30,16 @@
     </thead>
 
     <tbody>
-      <% @issue_pairs.each do |ip| %>
+      <% @tracker_rows_issues.each do |issue| %>
         <tr class="<%= cycle("odd", "even") %>">
-          <td title="<%= ip[0] %>">
-            <%= link_to "##{ip[0].id}", {:controller => "issues", :action => "show", :id => ip[0]} %>
+          <td title="<%= issue %>">
+            <%= link_to "##{issue.id}", {:controller => "issues", :action => "show", :id => issue} %>
           </td>
           <% @tracker_cols_issues.each do |cp| %>
             <td class="x">
-            <% ip[1] && ip[1].each do |issue| %>
-              <% if issue.id == cp.id %>
+              <% if @issue_pairs.has_key? issue and @issue_pairs[issue].has_key? cp %>
                 X
               <% end %>
-            <% end %>
             </td>
           <% end %>
         </tr>
@@ -56,27 +54,29 @@
     </thead>
 
     <tbody>
-      <% @issue_pairs.each do |ip| %>
+      <% @tracker_rows_issues.each do |issue| %>
         <tr class="<%= cycle("odd", "even") %>">
           <td>
-            <%= link_to_issue ip[0] %>
-            <%= textilizable ip[0].description %>
+            <%= link_to_issue issue %>
+            <%= textilizable issue.description %>
           </td>
-          <% unless ip[1].nil? %>
-            <td>
-              <% ip[1].each do |issue| %>
-                <p><%= link_to_issue issue %></p>
+          <td>
+            <% unless @issue_pairs[issue].nil? %>
+              <% @issue_pairs[issue].keys.sort.each do |other_issue| %>
+                <p><%= link_to_issue other_issue %></p>
               <% end %>
             <% end %>
           </td>
         </tr>
       <% end %>
-      <td></td>
-      <td>
-        <% @tracker_cols_not_seen_issues.each do |issue| %>
-          <p><%= link_to_issue issue %></p>
-        <% end %>
-      </td>
+      <% unless @tracker_cols_not_seen_issues.empty? %>
+        <td></td>
+        <td>
+          <% @tracker_cols_not_seen_issues.each do |issue| %>
+            <p><%= link_to_issue issue %></p>
+          <% end %>
+        </td>
+      <% end %>
     </tbody>
   </table>
 <% end %>
