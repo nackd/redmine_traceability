@@ -6,37 +6,36 @@ class MtController < ApplicationController
 
   def index
     @issue_rows = @tracker_rows.issues.find(:all,
-                                            :include => [:relations_from => :issue_to, :relations_to => :issue_from],
-                                            :order => 'id',
-                                            :conditions => ['project_id=?', @project.id])
+                                            :conditions => { :project_id => @project.id },
+                                            :order => :id)
     @issue_cols = @tracker_cols.issues.find(:all,
-                                            :conditions => ['project_id = ?', @project.id],
-                                            :order => 'id')
+                                            :conditions => { :project_id => @project.id },
+                                            :order => :id)
+    relations = IssueRelation.find(:all,
+                                   :joins => 'INNER JOIN `issues` issue_from ON issue_from.id = `issue_relations`.issue_from_id ' +
+                                             'INNER JOIN `issues` issue_to ON issue_to.id = `issue_relations`.issue_to_id ',
+                                   :include => [ :issue_from, :issue_to ],
+                                   :conditions => [ 'issue_from.project_id = :pid ' +
+                                                    'AND issue_to.project_id = :pid ' +
+                                                    'AND ((issue_from.tracker_id = :trows AND issue_to.tracker_id = :tcols) ' +
+                                                         'OR (issue_from.tracker_id = :tcols AND issue_to.tracker_id = :trows))',
+                                                    { :pid => @project.id, :trows => @tracker_rows.id, :tcols => @tracker_cols.id } ])
 
-    @not_seen_issue_cols = @issue_cols.clone
+    @not_seen_issue_cols = @issue_cols.dup
     @issue_pairs = {}
-    @issue_rows.each do |row_issue|
-      rel_issues_collection = []
-      row_issue.relations_to.each do |issue_relation|
-        rel_issue = issue_relation.issue_from
-        if rel_issue.tracker_id == @tracker_cols.id
-          rel_issues_collection << rel_issue
-        end
-      end
-
-      row_issue.relations_from.each do |issue_relation|
-        rel_issue = issue_relation.issue_to
-        if rel_issue.tracker_id == @tracker_cols.id
-          rel_issues_collection << rel_issue
-        end
-      end
-
-      unless rel_issues_collection.empty?
-        rel_issues_collection.each { |i| @not_seen_issue_cols.delete i }
-        @issue_pairs[row_issue] ||= {}
-        rel_issues_collection.each { |i| @issue_pairs[row_issue][i] = true }
+    relations.each do |relation|
+      if relation.issue_from.tracker_id == @tracker_rows.id
+        @issue_pairs[relation.issue_from] ||= {}
+        @issue_pairs[relation.issue_from][relation.issue_to] = true
+        @not_seen_issue_cols.delete relation.issue_to
+      else
+        @issue_pairs[relation.issue_to] ||= {}
+        @issue_pairs[relation.issue_to][relation.issue_from] = true
+        @not_seen_issue_cols.delete relation.issue_from
       end
     end
+
+
   end
 
   private
