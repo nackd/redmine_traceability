@@ -42,7 +42,7 @@
                   <% if other_issue == true %>
                     X
                   <% else %>
-                    <%= link_to "##{other_issue.id}", issue_path(other_issue) %>
+                    <%= link_to "##{other_issue.id}", issue_path(other_issue), :title => other_issue %>
                   <% end %>
                 <% end %>
               <% end %>
