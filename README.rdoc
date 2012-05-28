@@ -1,12 +1,14 @@
 == Traceability Plugin
 
 Traceability is a Redmine plugin to show the traceability matrix between the
-issues of two trackers of a project.
+issues of two (or even three!) trackers of a project.
 
 == Features
 
-* Shows a summary view of the relations between the two configured trackers
-(e.g. requirements vs. test cases).
+* Shows a summary view of the relations between two configured trackers
+  (e.g. requirements vs. test cases). It can also use an intermediate tracker
+  to show relations between three trackers (e.g. tasks vs. test cases through
+  requirements).
 
 == Getting the plugin
 
@@ -29,7 +31,7 @@ projects. There is also a new permission (View traceability matrix) which you
 should grant to the user roles allowed to see the matrix.
 
 The matrix shows wich issues of one tracker are related to issues of the other
-one.
+one (possible through an intermediate tracker).
 
 == License
 
