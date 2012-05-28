@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_traceability do
     end
   end
   author 'Emergya'
-  version '1.0'
+  version '2.0'
 
   settings :default => {'tracker0' => nil, 'tracker1' => nil, 'tracker2' => nil},
   :partial => 'settings/traceability'
