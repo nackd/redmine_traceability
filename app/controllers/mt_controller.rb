@@ -12,8 +12,8 @@ class MtController < ApplicationController
                                             :conditions => { :project_id => @project.id },
                                             :order => :id)
     relations = IssueRelation.find(:all,
-                                   :joins => 'INNER JOIN `issues` issue_from ON issue_from.id = `issue_relations`.issue_from_id ' +
-                                             'INNER JOIN `issues` issue_to ON issue_to.id = `issue_relations`.issue_to_id ',
+                                   :joins => 'INNER JOIN issues issue_from ON issue_from.id = issue_relations.issue_from_id ' +
+                                             'INNER JOIN issues issue_to ON issue_to.id = issue_relations.issue_to_id ',
                                    :include => [ :issue_from, :issue_to ],
                                    :conditions => [ 'issue_from.project_id = :pid ' +
                                                     'AND issue_to.project_id = :pid ' +
@@ -41,8 +41,8 @@ class MtController < ApplicationController
 
     int_to_rows = {}
     # Lookup intermediate tracker issue relations
-    IssueRelation.find_each(:joins => 'INNER JOIN `issues` issue_from ON issue_from.id = `issue_relations`.issue_from_id ' +
-                                      'INNER JOIN `issues` issue_to ON issue_to.id = `issue_relations`.issue_to_id ',
+    IssueRelation.find_each(:joins => 'INNER JOIN issues issue_from ON issue_from.id = issue_relations.issue_from_id ' +
+                                      'INNER JOIN issues issue_to ON issue_to.id = issue_relations.issue_to_id ',
                             :conditions => [ 'issue_from.project_id = :pid ' +
                                              'AND issue_to.project_id = :pid ' +
                                              'AND ((issue_from.tracker_id = :trows AND issue_to.tracker_id = :tint) ' +
@@ -58,8 +58,8 @@ class MtController < ApplicationController
         int_to_rows[relation.issue_to] << relation.issue_from
       end
     end
-    IssueRelation.find_each(:joins => 'INNER JOIN `issues` issue_from ON issue_from.id = `issue_relations`.issue_from_id ' +
-                                      'INNER JOIN `issues` issue_to ON issue_to.id = `issue_relations`.issue_to_id ',
+    IssueRelation.find_each(:joins => 'INNER JOIN issues issue_from ON issue_from.id = issue_relations.issue_from_id ' +
+                                      'INNER JOIN issues issue_to ON issue_to.id = issue_relations.issue_to_id ',
                             :conditions => [ 'issue_from.project_id = :pid ' +
                                              'AND issue_to.project_id = :pid ' +
                                              'AND ((issue_from.tracker_id = :tcols AND issue_to.tracker_id = :tint) ' +
