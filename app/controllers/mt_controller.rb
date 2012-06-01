@@ -100,7 +100,9 @@ class MtController < ApplicationController
   def get_trackers
     @tracker_rows = Tracker.find(Setting.plugin_redmine_traceability['tracker0'])
     @tracker_cols = Tracker.find(Setting.plugin_redmine_traceability['tracker1'])
-    @tracker_int = Tracker.first(:conditions => {:id => Setting.plugin_redmine_traceability['tracker2']})
+    if Setting.plugin_redmine_traceability['tracker2'].present?
+      @tracker_int = Tracker.first(:conditions => {:id => Setting.plugin_redmine_traceability['tracker2']})
+    end
   rescue ActiveRecord::RecordNotFound
     flash[:error] = l(:'traceability.setup')
     render
